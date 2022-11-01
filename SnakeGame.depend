@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1667339515 source:d:\snakegame\main.cpp
+	<iostream>
+	<windows.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<dos.h>
+	"Fruit.c"
+	"Snake.c"
+
+1667338071 d:\snakegame\fruit.c
+	<iostream>
+	"Fruit.h"
+
+1667338061 d:\snakegame\fruit.h
+
+1667339732 d:\snakegame\snake.c
+	<iostream>
+	"Snake.h"
+
+1667339508 d:\snakegame\snake.h
+

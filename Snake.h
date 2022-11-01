@@ -21,9 +21,10 @@ public:
     void turnSnakeDown();
     //moving the snake :
     void captureOldestPosition();
-    void moveSnake(Fruit* f);
+    void moveSnake(Fruit* f,char key);
     bool touchSnake(int x_, int y_);
     bool touchEdgeScreen(int x_, int y_);
+    void PositionAccordingActualCoordinatesX(int& ,int &);
     void afficher();
     //Destructor :
     ~Snake() {};

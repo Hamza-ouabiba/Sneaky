@@ -48,8 +48,9 @@ void Snake::captureOldestPosition()
         y[i] = y[i - 1];
     }
 }
-void Snake::moveSnake(Fruit* f)
+void Snake::moveSnake(Fruit* f,char key)
 {
+    int up,left,down,right = 0;
     //testing colliding with fruit :
     auto xFr = f->getxAxis();
     auto yFr = f->getyAxis();
@@ -63,6 +64,25 @@ void Snake::moveSnake(Fruit* f)
         }
         f->placeFruit();
     }
+    switch (tolower(key))
+        {
+            case 'z':
+            {
+                turnSnakeUp();
+            } break;
+            case 'q':
+            {
+                turnSnakeLeft();
+            } break;
+            case 'd':
+            {
+                turnSnakeRight();
+            } break;
+            case 's':
+            {
+                turnSnakeDown();
+            }
+        }
 
     for (auto i = 0; i < snakeSize__; i++)
     {
@@ -89,6 +109,21 @@ bool Snake::touchEdgeScreen(int x_, int y_)
         return true;
     return false;
 }
+void Snake::PositionAccordingActualCoordinatesX(int& xSnake,int& ySnake)
+{
+    if(Snake::touchEdgeScreen(xSnake,ySnake))
+    {
+        if(xSnake == 120)
+         xSnake = 0;
+        else if(xSnake == 0)
+          xSnake= 120;
+        if(ySnake == 0)
+         ySnake = 30;
+        else if(ySnake == 30)
+          ySnake = 0;
+    }
+}
+
 void Snake::afficher()
 {
 }

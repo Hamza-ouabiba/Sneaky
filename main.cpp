@@ -8,13 +8,10 @@
 #include"Snake.c"
 using namespace::std;
 bool gameOver;
-void gotoxy(int x, int y)
-{
-    COORD coor;
-    coor.X = x;
-    coor.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coor);
-}
+int up;
+int down;
+int left_;
+int right_;
 void hidecursor()
 {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -28,7 +25,6 @@ int main()
 {
  Debut:
     Snake s;
-
     hidecursor();
     s.initialiseSnake();
     Fruit f(s.x[0],s.y[0]);
@@ -39,9 +35,8 @@ int main()
         {
             key = _getch();
         }
-        s.captureOldestPosition();
-        if (!s.touchSnake(s.x[0], s.y[0]))
-            s.moveSnake(&f,key);
+        if(!s.touchSnake(s.x[0],s.y[0]))
+            s.moveSnake(&f,key,up,down,left_,right_);
         else
         {
             cout << "game over";

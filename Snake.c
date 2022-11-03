@@ -12,7 +12,7 @@ Snake::Snake()
 //storing the x and y positions within the console :
 void Snake::initialiseSnake()
 {
-    for (auto i = 1;i <= snakeSize__;i++)
+    for (int i = 1;i <= snakeSize__;i++)
     {
         x[i] = 0;
         y[i] = 0;
@@ -42,18 +42,17 @@ void Snake::turnSnakeDown()
 void Snake::captureOldestPosition()
 {
     //keep all the predecessors of the snake follows the tail
-    for (auto i = snakeSize__; i > 0;i--)
+    for (int i = snakeSize__; i > 0;i--)
     {
         x[i] = x[i - 1];
         y[i] = y[i - 1];
     }
 }
-void Snake::moveSnake(Fruit* f,char key)
+void Snake::moveSnake(Fruit* f,char key,int& up,int& down,int& left,int& right)
 {
-    int up,left,down,right = 0;
     //testing colliding with fruit :
-    auto xFr = f->getxAxis();
-    auto yFr = f->getyAxis();
+    int xFr = f->getxAxis();
+    int yFr = f->getyAxis();
     if (xFr == x[0] && yFr == y[0])
     {
         //increment the size :
@@ -64,27 +63,51 @@ void Snake::moveSnake(Fruit* f,char key)
         }
         f->placeFruit();
     }
-    switch (tolower(key))
+        Snake::captureOldestPosition();
+    switch(tolower(key))
+    {
+    	case 'z':
         {
-            case 'z':
+            if (down == 0)
             {
                 turnSnakeUp();
-            } break;
-            case 'q':
+                up = 1;
+                left = right = 0;
+            }
+            else turnSnakeDown();
+        } break;
+        case 'q':
+        {
+            if (left == 0)
             {
                 turnSnakeLeft();
-            } break;
-            case 'd':
+                right = 1;
+                up = down = 0;
+            }
+            else turnSnakeRight();
+        } break;
+        case 'd':
+        {
+            if (right == 0)
             {
                 turnSnakeRight();
-            } break;
-            case 's':
+                left = 1;
+                up = down = 0;
+            }
+            else turnSnakeLeft();
+        } break;
+        case 's':
+        {
+            if (up == 0)
             {
                 turnSnakeDown();
+                down = 1;
+                left = right = 0;
             }
+            else turnSnakeUp();
         }
-
-    for (auto i = 0; i < snakeSize__; i++)
+	}
+    for (int i = 0; i < snakeSize__; i++)
     {
         if (i == 0)
         {
@@ -127,4 +150,3 @@ void Snake::PositionAccordingActualCoordinatesX(int& xSnake,int& ySnake)
 void Snake::afficher()
 {
 }
-

@@ -1,7 +1,13 @@
 #include<iostream>
 #include"Fruit.h"
 using namespace::std;
-
+void gotoxy(int x, int y)
+{
+    COORD coor;
+    coor.X = x;
+    coor.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coor);
+}
 position generateRandomeLocation()
 {
     srand(time(NULL));
@@ -24,7 +30,7 @@ bool Fruit::checkAxis(int* xSnake, int* ySnake, int snakeSize)
     int xFruit = generateRandomeLocation().x;
     int yFruit = generateRandomeLocation().y;
     bool flag = false;
-    for (auto i = 0;i < snakeSize;i++)
+    for (int i = 0;i < snakeSize;i++)
     {
         if (xSnake[i] == xFruit && ySnake[i] == yFruit)
         {

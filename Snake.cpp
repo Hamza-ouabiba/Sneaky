@@ -150,4 +150,3 @@ void Snake::PositionAccordingActualCoordinatesX(int& xSnake,int& ySnake)
 void Snake::afficher()
 {
 }
-

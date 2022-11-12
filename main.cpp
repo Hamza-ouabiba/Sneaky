@@ -12,6 +12,7 @@ int up;
 int down;
 int left_;
 int right_;
+
 void hidecursor()
 {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -23,12 +24,13 @@ void hidecursor()
 
 int main()
 {
+
  Debut:
     Snake s;
     hidecursor();
     s.initialiseSnake();
     Fruit f(s.x[0],s.y[0]);
-    char key = 0;
+    char key = 'd';
     while (!gameOver)
     {
         if (kbhit())
@@ -40,13 +42,15 @@ int main()
         else
         {
             cout << "game over";
+            sleep(10);
             _getch();
             gameOver = true;
             goto Debut;
         }
         s.PositionAccordingActualCoordinatesX(s.x[0],s.y[0]);
         f.placeFruit();
-        Sleep(10);
+        //setting the speed of snake :
+        Sleep(1);
         system("cls");
     }
     return 0;

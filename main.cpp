@@ -4,8 +4,8 @@
 #include<conio.h>
 #include<time.h>
 #include<dos.h>
-#include"Fruit.c"
-#include"Snake.c"
+#include"Fruit.cpp"
+#include"Snake.cpp"
 using namespace::std;
 bool gameOver;
 int up;
